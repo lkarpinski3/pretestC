@@ -2,13 +2,26 @@
 #include <string.h>
 #include <stdlib.h>
 
-void searchArray(char *s1, char *s2, int len);
+void searchString(char *s1, char *s2, int e);
 
 void main (int argc, char *argv[]){
   int i, j, jj;
-  char string1[strlen(argv[1])];
-  char string2[strlen(argv[2])];
+  int len = 0;
 
+  /* Find the largest length of the arrays */
+  if(strlen(argv[1])<strlen(argv[2])){
+    len = strlen(argv[2]);
+  } else{
+    len = strlen(argv[1]);
+  }
+
+  /* Define new arrays and pointers */
+  char string1[len];
+  char string2[len];
+  char *s1_ptr;
+  char *s2_ptr;
+
+  /* Copy new orignal arguments to the new array variables */
   if(strlen(argv[1])<strlen(argv[2])){
     strcpy(string1,argv[1]);
     strcpy(string2,argv[2]);
@@ -17,32 +30,35 @@ void main (int argc, char *argv[]){
     strcpy(string2,argv[1]);
   }
 
-  char str1_sub[strlen(string1)];
-  char str2_sub[strlen(string1)];
+  char str1_sub[len];
+  char str2_sub[len];
 
+  s1_ptr = string1;
+  s2_ptr = string2;
 
   for (i = 0; i < strlen(string1); i++) {
-    memcpy(str1_sub,&string1[i],i);
-    printf("%s\n", str1_sub);
-    printf("%d\n", i);
-    for(j = 1; j < strlen(string1); j++) {
-/*      strncpy(str1_sub,string1,j+1);
-      str1_sub[j+1] = '\0';*/
-      searchArray(str1_sub,string2, 2);
+    for(j =i; j < strlen(string1); j++){
+      /*if(j < strlen(string1)){*/
+        memcpy(str1_sub, s1_ptr+i,j+1);
+        printf("%s\n", str1_sub);
+        /*searchString(str1_sub,string2,2);*/
+      /*}*/
     }
+
+    /*printf("%d\n", strlen(string1));*/
   }
 }
 
-
-/* searchArray function searches the string for the substring */
-void searchArray(char *s1, char *s2, int len){
+/* searchString function searches the string for the substring */
+void searchString(char *s1, char *s2, int e){
   int ii;
   int s1len = strlen(s1);
   char substring[s1len];
+  int flag0 = 0;
+  int flag1 = 0;
 
   for(ii = 0; ii<strlen(s2); ii++){
     memcpy(substring, &s2[ii], s1len);
-    /*printf("%s\n",substring);*/
     if(strcmp(s1,substring) == 0){
       printf("%s\n",substring);
     }
