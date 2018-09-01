@@ -29,6 +29,14 @@ void main (int argc, char *argv[]){
     strcpy(string1,argv[2]);
     strcpy(string2,argv[1]);
   }
+/*
+  printf("%s\n", string1);
+  printf("%s\n", string2);
+*/
+  string1[strlen(string1)] = '\0';
+  string2[strlen(string2)] = '\0';
+  printf("%s\n", string1);
+  printf("%s\n", string2);
 
   char str1_sub[len];
   char str2_sub[len];
@@ -37,15 +45,12 @@ void main (int argc, char *argv[]){
   s2_ptr = string2;
 
   for (i = 0; i < strlen(string1); i++) {
-    for(j =i; j < strlen(string1); j++){
-      /*if(j < strlen(string1)){*/
-        memcpy(str1_sub, s1_ptr+i,j+1);
-        printf("%s\n", str1_sub);
-        /*searchString(str1_sub,string2,2);*/
-      /*}*/
+    for(j = i; j < strlen(string1); j++){
+      memcpy(str1_sub, s1_ptr+i,j+1);
+      str1_sub[strlen(str1_sub)] = '\0';
+      printf("%d\n", strlen(str1_sub));
+      /*printf("%s\n", str1_sub);*/
     }
-
-    /*printf("%d\n", strlen(string1));*/
   }
 }
 
