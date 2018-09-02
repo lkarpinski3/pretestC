@@ -52,7 +52,6 @@ void main (int argc, char *argv[]){
   } else {
     printf("Please enter two strings: ./a.out string1 string2\n");
   }
-
 }
 
 /* searchString function searches the string for the substring */
@@ -71,7 +70,6 @@ void searchString(char *s1, char *s2, int e){
         printf("%s\n",substring);
         flag = 1;
       }
-
     }
   }
 }
