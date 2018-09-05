@@ -3,11 +3,9 @@
 #include <stdlib.h>
 
 /* Global variable*/
-
 int lenStr1 = 0;
 int bufferLen = 0;
 int arrayLen = 0;
-
 
 /* Function declaration*/
 void searchString(char *s1, char *s2, int e);
@@ -57,26 +55,21 @@ void main (int argc, char *argv[]){
       arrayLen += lenStr1;
       lenStr1--;
     }
-    /*printf("%d\n", bufferLen);*/
+
     (const int)arrayLen;
     (const int)bufferLen;
     char arrayList[arrayLen][bufferLen];
 
-
     s1_ptr = string1;
     s2_ptr = string2;
-
-    /*printf("String 1:\t%s\n",string1);*/
 
     for (i = 0; i < strlen(string1); i++) {
       mainFlag=0;
       for(j = 0; j+i != strlen(string1); j++){
         memcpy(str1_sub, s1_ptr+i,j+1);
         str1_sub[j+1] = '\0';
-
-        /*printf("\tsent:\t%s \n", arrayList[arrayIndex]);*/
         for(jj=0; jj < arrayLen; jj++){
-          if(strcmp(str1_sub, arrayList[jj]) ==0){
+          if(strcmp(str1_sub, arrayList[jj]) == 0){
             mainFlag = 1;
           }
         }
@@ -84,23 +77,13 @@ void main (int argc, char *argv[]){
           searchString(str1_sub,string2,1);
           strcpy(arrayList[arrayIndex],str1_sub);
         }
-
         arrayIndex+=1;
       }
-
-/*      if(i == 0){
-        arrayList[arrayIndex-1][strlen(string1)] = '\0';
-      }*/
     }
-/*    for (i = 0; i < arrayLen; i++) {
-      printf("%s\n",arrayList[i]);
-    }*/
   } else {
     printf("Please enter two strings: ./a.out string1 string2\n");
   }
 }
-
-
 
 /* searchString function searches the string for the substring */
 void searchString(char *s1, char *s2, int e){
@@ -108,7 +91,6 @@ void searchString(char *s1, char *s2, int e){
   int s1len = strlen(s1);
   char substring[s1len];
   int flag = 0;
-
 
   for(ii = 0; ii<strlen(s2); ii++){
     memcpy(substring, &s2[ii], s1len);
