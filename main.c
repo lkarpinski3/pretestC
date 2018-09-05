@@ -17,6 +17,7 @@ void main (int argc, char *argv[]){
   int i, j, jj, col, row;
   int len = 0;
   int arrayIndex = 0;
+  int mainFlag = 0;
 
   if(argc == 3){
     /* Find the largest length of the arrays */
@@ -56,6 +57,7 @@ void main (int argc, char *argv[]){
       arrayLen += lenStr1;
       lenStr1--;
     }
+    /*printf("%d\n", bufferLen);*/
     (const int)arrayLen;
     (const int)bufferLen;
     char arrayList[arrayLen][bufferLen];
@@ -64,32 +66,34 @@ void main (int argc, char *argv[]){
     s1_ptr = string1;
     s2_ptr = string2;
 
-    printf("String 1:\t%s\n",string1);
+    /*printf("String 1:\t%s\n",string1);*/
 
     for (i = 0; i < strlen(string1); i++) {
+      mainFlag=0;
       for(j = 0; j+i != strlen(string1); j++){
         memcpy(str1_sub, s1_ptr+i,j+1);
         str1_sub[j+1] = '\0';
-        for(col = 0; col < j+1; col++){
-          arrayList[arrayIndex][col] = str1_sub[col];
+        strcpy(arrayList[arrayIndex],str1_sub);
+        /*printf("\tsent:\t%s \n", arrayList[arrayIndex]);*/
+        for(jj=0; jj < arrayLen; jj++){
+          if(strcmp(str1_sub, arrayList[jj]) ==0){
+            mainFlag = 1;
+          }
         }
-        arrayList[strlen(str1_sub)]  = '\0';
-        printf("\tsent:\t%s \n", arrayList[arrayIndex]);
-        /*searchString(str1_sub,string2,1);*/
+        if(!mainFlag){
+          searchString(str1_sub,string2,1);
+        }
+
         arrayIndex+=1;
       }
 
-
+/*      if(i == 0){
+        arrayList[arrayIndex-1][strlen(string1)] = '\0';
+      }*/
     }
-    for (i = 0; i < arrayLen; i++) {
-/*      for(j = 0; j < bufferLen; j++){
-        if(arrayList[i][j] != '\0'){
-          printf("%c",arrayList[i][j]);
-        }
-      }
-      printf("\n");*/
+/*    for (i = 0; i < arrayLen; i++) {
       printf("%s\n",arrayList[i]);
-    }
+    }*/
   } else {
     printf("Please enter two strings: ./a.out string1 string2\n");
   }
