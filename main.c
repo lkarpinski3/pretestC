@@ -67,15 +67,11 @@ void main (int argc, char *argv[]){
     s2_ptr = string2;
 
     for (i = 0; i < strlen(string1); i++) {
-
       for(j = 0; j+i != strlen(string1); j++){
         memcpy(str1_sub, s1_ptr+i,j+1);
         str1_sub[j+1] = '\0';
-        /*printf("sent:\t%s\n", str1_sub);*/
         for(jj=0; jj < arrayLen; jj++){
-          /*printf("%s:\t", arrayList[jj]);*/
           look = strncmp(arrayList[jj],str1_sub,(unsigned int)j+1);
-          /*printf("%d\n", look);*/
           if(look == 0){
             mainFlag = 1;
           }
@@ -83,7 +79,6 @@ void main (int argc, char *argv[]){
         if(!mainFlag){
           searchString(str1_sub,string2,1);
           strcpy(arrayList[arrayIndex],str1_sub);
-          /*printf("save:\t%s\n", str1_sub);*/
         }
         mainFlag=0;
         arrayIndex+=1;
