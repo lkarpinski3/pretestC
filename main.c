@@ -2,11 +2,21 @@
 #include <string.h>
 #include <stdlib.h>
 
+/* Global variable*/
+
+int lenStr1 = 0;
+int bufferLen = 0;
+int arrayLen = 0;
+
+
+/* Function declaration*/
 void searchString(char *s1, char *s2, int e);
 
+/* Main function */
 void main (int argc, char *argv[]){
-  int i, j, jj;
+  int i, j, jj, col, row;
   int len = 0;
+  int arrayIndex = 0;
 
   if(argc == 3){
     /* Find the largest length of the arrays */
@@ -38,21 +48,54 @@ void main (int argc, char *argv[]){
     char str1_sub[len];
     char str2_sub[len];
 
+    /* Create new array list for checking what we currently printed */
+    /* First find the length of String1 */
+    lenStr1 = strlen(string1);
+    bufferLen = lenStr1;
+    for(i = 0; i < bufferLen; i++){
+      arrayLen += lenStr1;
+      lenStr1--;
+    }
+    (const int)arrayLen;
+    (const int)bufferLen;
+    char arrayList[arrayLen][bufferLen];
+
+
     s1_ptr = string1;
     s2_ptr = string2;
+
+    printf("String 1:\t%s\n",string1);
 
     for (i = 0; i < strlen(string1); i++) {
       for(j = 0; j+i != strlen(string1); j++){
         memcpy(str1_sub, s1_ptr+i,j+1);
         str1_sub[j+1] = '\0';
-        /*printf("sent:\t%s \n", str1_sub);*/
-        searchString(str1_sub,string2,1);
+        for(col = 0; col < j+1; col++){
+          arrayList[arrayIndex][col] = str1_sub[col];
+        }
+        arrayList[strlen(str1_sub)]  = '\0';
+        printf("\tsent:\t%s \n", arrayList[arrayIndex]);
+        /*searchString(str1_sub,string2,1);*/
+        arrayIndex+=1;
       }
+
+
+    }
+    for (i = 0; i < arrayLen; i++) {
+/*      for(j = 0; j < bufferLen; j++){
+        if(arrayList[i][j] != '\0'){
+          printf("%c",arrayList[i][j]);
+        }
+      }
+      printf("\n");*/
+      printf("%s\n",arrayList[i]);
     }
   } else {
     printf("Please enter two strings: ./a.out string1 string2\n");
   }
 }
+
+
 
 /* searchString function searches the string for the substring */
 void searchString(char *s1, char *s2, int e){
@@ -60,6 +103,7 @@ void searchString(char *s1, char *s2, int e){
   int s1len = strlen(s1);
   char substring[s1len];
   int flag = 0;
+
 
   for(ii = 0; ii<strlen(s2); ii++){
     memcpy(substring, &s2[ii], s1len);
