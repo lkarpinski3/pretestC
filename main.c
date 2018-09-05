@@ -73,7 +73,7 @@ void main (int argc, char *argv[]){
       for(j = 0; j+i != strlen(string1); j++){
         memcpy(str1_sub, s1_ptr+i,j+1);
         str1_sub[j+1] = '\0';
-        strcpy(arrayList[arrayIndex],str1_sub);
+
         /*printf("\tsent:\t%s \n", arrayList[arrayIndex]);*/
         for(jj=0; jj < arrayLen; jj++){
           if(strcmp(str1_sub, arrayList[jj]) ==0){
@@ -82,6 +82,7 @@ void main (int argc, char *argv[]){
         }
         if(!mainFlag){
           searchString(str1_sub,string2,1);
+          strcpy(arrayList[arrayIndex],str1_sub);
         }
 
         arrayIndex+=1;
