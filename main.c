@@ -1,5 +1,5 @@
 /*
- * Version 2 checking for duplicates
+ * Version 3 
  */
 #include <stdio.h>
 #include <string.h>
@@ -70,8 +70,10 @@ void main (int argc, char *argv[]){
       for(j = 0; j+i != strlen(string1); j++){
         memcpy(str1_sub, s1_ptr+i,j+1);
         str1_sub[j+1] = '\0';
+        /*printf("sent:\t%s\n",str1_sub);*/
         for(jj=0; jj < arrayLen; jj++){
-          look = strncmp(arrayList[jj],str1_sub,(unsigned int)j+1);
+          /*look = strncmp(arrayList[jj],str1_sub,(unsigned int)j+1);*/
+          look = strcmp(arrayList[jj],str1_sub);
           if(look == 0){
             mainFlag = 1;
           }
